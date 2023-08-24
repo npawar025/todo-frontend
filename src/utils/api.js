@@ -1,6 +1,7 @@
 import axios from "axios";
 
 const baseUrl = "https://todo-api-assignment.onrender.com";
+// const baseUrl = "http://localhost:5000";
 
 //fetch all todos
 const getAllToDo = async (setToDo) => {
@@ -14,7 +15,7 @@ const getAllToDo = async (setToDo) => {
   }
 };
 
-//add new todo 
+//add new todo
 const addToDo = async (text, setText, setToDo) => {
   try {
     await axios.post(`${baseUrl}/save`, { text });
@@ -38,14 +39,14 @@ const updateToDo = async (toDoId, text, setToDo, setText, setIsUpdating) => {
 };
 
 //delete the todo
+
 const deleteToDo = async (_id, setToDo) => {
   try {
-    await axios.post(`${baseUrl}/delete`, { _id });
+    await axios.delete(`${baseUrl}/delete`, { data: { _id } });
     await getAllToDo(setToDo);
   } catch (error) {
     console.error(error);
   }
 };
-
 
 export { getAllToDo, addToDo, updateToDo, deleteToDo };
